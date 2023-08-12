@@ -9,7 +9,7 @@ interface MovieDetailsProps {
 
 const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, onClose }) => {
   const baseUrl = "https://image.tmdb.org/t/p/";
-  const posterSize = "w300"; // Choose the desired size
+  const posterSize = "w300"; 
   const fullImageUrl = `${baseUrl}${posterSize}${movie.poster_path}`;
 
   const releaseDate = new Date(movie.release_date);
