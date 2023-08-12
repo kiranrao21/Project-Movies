@@ -29,6 +29,8 @@ Welcome to the Project Movies repository! This project is a movie browsing app b
 
    ```sh
    git clone https://github.com/your-username/project-movies.git
+   ```sh
+
 
    Navigate to the project directory:
 
