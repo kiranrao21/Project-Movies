@@ -13,11 +13,27 @@ function App() {
   const [activeTab, setActiveTab] = useState<'nowPlaying' | 'topRated'>('nowPlaying'); 
   const [searchResults, setSearchResults] = useState<Movie[]>([]); // State for search results
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
 
   useEffect(() => {
+    function handleOnlineStatusChange() {
+      setIsOnline(navigator.onLine);
+    }
+
+    window.addEventListener('online', handleOnlineStatusChange);
+    window.addEventListener('offline', handleOnlineStatusChange);
+    
     setIsLoading(true)
     async function fetchMovies() {
       try {
+
+        setIsOnline(navigator.onLine);
+
+        if (!navigator.onLine) {
+          setIsLoading(false);
+          return;
+        }
+        
         let apiUrl = '';
 
         if (activeTab === 'nowPlaying') {
@@ -64,7 +80,12 @@ function App() {
 
   return (
     <div className="section pt-1">
+      {isOnline ? ( // Display loading indicator only when online
         <Loading isLoading={isLoading} />
+      ) : (
+        <div className="error">You are not connected to the internet</div>
+      )}
+
       <div className="wrap-2 centralized">
         <div className="flex-box gap-1">
           <div className="App">
