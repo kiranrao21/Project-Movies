@@ -31,6 +31,8 @@ Welcome to the Project Movies repository! This project is a movie browsing app b
    git clone https://github.com/your-username/Project-Movies.git
    ```
 
+ Ensure you have placed the required environment configurations in the `.env` file under the root folder. You should have received this file via email. If you haven't received it, please reach out to me.
+
    Navigate to the project directory:
 
    ```sh
