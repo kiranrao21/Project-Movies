@@ -5,14 +5,17 @@ import TabBar from './components/TabBar';
 import SearchBar from './components/SearchBar';
 import { Movie } from './components/types/movie';
 import './styles/main.scss';
+import Loading from './components/Loading';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [activeTab, setActiveTab] = useState<'nowPlaying' | 'topRated'>('nowPlaying'); 
   const [searchResults, setSearchResults] = useState<Movie[]>([]); // State for search results
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setIsLoading(true)
     async function fetchMovies() {
       try {
         let apiUrl = '';
@@ -30,6 +33,8 @@ function App() {
         setMovies(data.results);
       } catch (error) {
         console.error('Error fetching movies:', error);
+      }finally{
+        setIsLoading(false)
       }
     }
 
@@ -59,6 +64,7 @@ function App() {
 
   return (
     <div className="section pt-1">
+        <Loading isLoading={isLoading} />
       <div className="wrap-2 centralized">
         <div className="flex-box gap-1">
           <div className="App">
