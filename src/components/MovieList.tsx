@@ -4,17 +4,18 @@ import { Movie } from './types/movie';
 
 
 interface MovieListProps {
-  movies: Movie[];
-}
+    movies: Movie[];
+    onMovieClick: (movie: Movie) => void;
+  }
 
-const MovieList: React.FC<MovieListProps> = ({ movies }) => {
-  return (
-    <div className="movie-list">
-      {movies.map((movie) => (
-        <MovieListItem key={movie.id} movie={movie} />
-      ))}
-    </div>
-  );
-};
+  const MovieList: React.FC<MovieListProps> = ({ movies, onMovieClick }) => {
+    return (
+      <div className="movie-list">
+        {movies.map((movie) => (
+          <MovieListItem key={movie.id} movie={movie} onClick={() => onMovieClick(movie)} />
+        ))}
+      </div>
+    );
+  };
 
 export default MovieList;
