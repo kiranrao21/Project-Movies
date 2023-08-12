@@ -1,13 +1,7 @@
-// import React, { useState, useEffect } from 'react';
-// import './styles/main.scss';
-// import MovieList from './components/MovieList';
-// import MovieDetails from './components/MovieDetails';
-// import TabBar from './components/TabBar';
-// import SearchBar from './components/SearchBar';
-
 import React, { useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
 import { Movie } from './components/types/movie';
+import './styles/main.scss';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -16,7 +10,7 @@ function App() {
     async function fetchMovies() {
       try {
         const response = await fetch(
-          'https://api.themoviedb.org/3/movie/now_playing?api_key=29bc4fd485d9c906c159d74a55c31673'
+          `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_KEY}`
         );
         const data = await response.json();
         setMovies(data.results);
@@ -29,9 +23,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Now Playing Movies</h1>
-      <MovieList movies={movies} />
+    <div className="section pt-1 ">
+      <div className="wrap-2 centralized">
+          <div className="flex-box gap-1">
+            <div className="App">
+              <h1>Now Playing Movies</h1>
+              <MovieList movies={movies} />
+            </div>
+          </div>
+        </div>
     </div>
   );
 }

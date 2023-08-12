@@ -1,19 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Oswald:wght@500&display=swap');
+
 // Variables
-$primary-color: #007bff;
+$primary-color: #243271;
 $secondary-color: #6c757d;
+$background-color: #e8f2fa;
+$title-color:#243271;
 
 // Global styles
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  font-weight: 400;
+  box-sizing: border-box;
+  background-color: #fff;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.wrap-1 {
+    max-width: 71.25em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+.wrap-2 {
+    max-width: 73.25em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.section {
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+.section.pt-1 {
+    padding-top: 1em;
+}
+.section.pb-1 {
+    padding-bottom: 1em;
+}
+.centralized {
+    margin-left: auto;
+    margin-right: auto;
+}
+.flex-box.gap-1 {
+    gap: 1em;
 }
 
 // Header
@@ -88,15 +116,24 @@ h1 {
 }
 
 .movie-list-item {
-  border: 1px solid $secondary-color;
+  border: 1px solid $primary-color;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
   text-align: center;
+  transition: all 0.3s ease;
+  background-color: $background-color;
+
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
+    border-color: $primary-color;
+  }
 
   img {
     max-width: 100%;
     height: auto;
     margin-bottom: 10px;
+    border-radius: 8px;
   }
 
   h3 {
