@@ -82,6 +82,11 @@ h1 {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
+
+//   .search-input-container {
+//     position: relative;
+//     flex-grow: 1;
 
   input[type="text"] {
     padding: 10px;
@@ -89,7 +94,21 @@ h1 {
     border: 1px solid $secondary-color;
     border-radius: 4px;
     flex-grow: 1;
+    padding-right: 30px;
   }
+
+  .clear-button {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+  }
+// }
 
   button {
     padding: 10px 20px;

@@ -11,6 +11,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     onSearch(searchQuery);
   };
 
+  const handleClear = () => {
+    setSearchQuery('');
+    onSearch(''); // Trigger a search with an empty query to show all movies
+  };
+
   return (
     <div className="search-bar">
       <input
@@ -19,6 +24,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
+      {searchQuery && ( // Show the "x" button only when there's a search query
+        <button className="clear-button" onClick={handleClear}>
+          x
+        </button>
+      )}
       <button onClick={handleSearch}>Search</button>
     </div>
   );

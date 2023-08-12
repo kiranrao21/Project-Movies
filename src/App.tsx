@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
 import MovieDetails from './components/MovieDetails';
 import TabBar from './components/TabBar';
+import SearchBar from './components/SearchBar';
 import { Movie } from './components/types/movie';
 import './styles/main.scss';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-  const [activeTab, setActiveTab] = useState<'nowPlaying' | 'topRated'>('nowPlaying'); // Initial tab
+  const [activeTab, setActiveTab] = useState<'nowPlaying' | 'topRated'>('nowPlaying'); 
+  const [searchResults, setSearchResults] = useState<Movie[]>([]); // State for search results
 
   useEffect(() => {
     async function fetchMovies() {
@@ -31,6 +33,7 @@ function App() {
       }
     }
 
+    setSearchResults([])
     fetchMovies();
   }, [activeTab]);
 
@@ -46,6 +49,14 @@ function App() {
     setActiveTab(tab);
   };
 
+  const handleSearch = (query: string) => {
+    // Filter movies based on the search query
+    const filteredMovies = movies.filter(movie =>
+      movie.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(filteredMovies);
+  };
+
   return (
     <div className="section pt-1">
       <div className="wrap-2 centralized">
@@ -55,10 +66,14 @@ function App() {
             {!selectedMovie && (
               <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
             )}
+            <SearchBar onSearch={handleSearch} /> {/* Add the SearchBar component */}
             {selectedMovie ? (
               <MovieDetails movie={selectedMovie} onClose={handleCloseDetails} />
             ) : (
-              <MovieList movies={movies} onMovieClick={handleMovieClick} />
+              <MovieList
+                movies={searchResults.length > 0 ? searchResults : movies} // Show search results if available, otherwise show all movies
+                onMovieClick={handleMovieClick}
+              />
             )}
           </div>
         </div>
