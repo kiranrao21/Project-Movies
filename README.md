@@ -8,7 +8,6 @@ Welcome to the Project Movies repository! This project is a movie browsing app b
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
 
 ## Features
 
