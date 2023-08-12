@@ -34,17 +34,23 @@ Welcome to the Project Movies repository! This project is a movie browsing app b
 
    Navigate to the project directory:
 
+   ```sh
    cd project-movies
+   ```
 
     Install the dependencies:
 
+   ```sh
     npm install
+   ```
 
     Usage
 
     Run the development server:
 
+   ```sh
     npm start
+   ```
 
     This will start the app on http://localhost:3000 by default.
 
