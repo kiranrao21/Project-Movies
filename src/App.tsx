@@ -14,6 +14,7 @@ function App() {
   const [searchResults, setSearchResults] = useState<Movie[]>([]); // State for search results
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+  const [isSearchBarVisible, setSearchBarVisible] = useState(true);
 
   useEffect(() => {
     function handleOnlineStatusChange() {
@@ -59,10 +60,12 @@ function App() {
   }, [activeTab]);
 
   const handleMovieClick = (movie: Movie) => {
+    setSearchBarVisible(false);
     setSelectedMovie(movie);
   };
 
   const handleCloseDetails = () => {
+    setSearchBarVisible(true);
     setSelectedMovie(null);
   };
 
@@ -80,20 +83,26 @@ function App() {
 
   return (
     <div className="section pt-1">
-      {isOnline ? ( // Display loading indicator only when online
+    {isOnline ? (
+      <div className={isLoading ? 'overlay' : 'overlay hidden'}>
         <Loading isLoading={isLoading} />
-      ) : (
+      </div>
+    ) : (
+      <div className='overlay'>
         <div className="error">You are not connected to the internet</div>
-      )}
+      </div>
+    )}
 
       <div className="wrap-2 centralized">
         <div className="flex-box gap-1">
           <div className="App">
-            <h1>Now Playing Movies</h1>
+            <h1>Welcome to Project Movies</h1>
             {!selectedMovie && (
               <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
             )}
-            <SearchBar onSearch={handleSearch} /> {/* Add the SearchBar component */}
+            {!selectedMovie && isSearchBarVisible && (
+            <SearchBar onSearch={handleSearch} />
+            )}
             {selectedMovie ? (
               <MovieDetails movie={selectedMovie} onClose={handleCloseDetails} />
             ) : (

@@ -11,7 +11,7 @@ const Loading: React.FC<LoadingProps> = ({ isLoading }) => {
     <div>
       {
         isLoading ? 
-        <ReactLoading type={"balls"} color={"black"} height={667} width={375} />
+        <ReactLoading type={"spin"} color={"white"} height={500} width={375} />
         : null
       }
     </div>
