@@ -13,7 +13,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, onClose }) => {
 
   return (
     <div className="movie-details">
-      <img src={fullImageUrl} alt={movie.title} />
+      <img src={fullImageUrl} alt={movie.title} loading="lazy" />
       <h2>{movie.title}</h2>
       {/* Other movie details */}
       <button onClick={onClose}>Close</button>

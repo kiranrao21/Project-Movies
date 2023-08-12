@@ -13,7 +13,7 @@ const MovieListItem: React.FC<MovieListItemProps> = ({ movie, onClick }) => {
 
   return (
     <div className="movie-list-item" onClick={onClick}>
-      <img src={fullImageUrl} alt={movie.title} />
+      <img src={fullImageUrl} alt={movie.title} loading="lazy" />
       <h3>{movie.title}</h3>
       {/* Other movie details */}
     </div>
