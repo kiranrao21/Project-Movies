@@ -121,12 +121,13 @@ h1 {
   .clear-button {
     position: absolute;
     top: 50%;
+    color: $primary-color;
     right: 10%;
     transform: translateY(-50%);
     background: none;
     border: none;
     font-size: 16px;
-    color: #999;
+    // color: #999;
     cursor: pointer;
   }
   button {
@@ -140,9 +141,7 @@ h1 {
     margin-left: 10px;
     transition: background-color 0.3s;
 
-    &:hover {
-      background-color: darken($primary-color, 10%);
-    }
+
   }
 }
 
@@ -315,7 +314,7 @@ h1 {
 }
 
 // 11.0 Mobile view
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .movie-details {
     .close-button {
       right: 4%;
@@ -326,6 +325,11 @@ h1 {
           max-width: 65%;
       }
   }
+.search-bar {
+  .clear-button{
+    right: 25%;
+  }
+}
   .movie-list-item{
 
     img{

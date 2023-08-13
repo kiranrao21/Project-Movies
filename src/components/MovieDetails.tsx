@@ -19,6 +19,18 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, onClose }) => {
     year: '2-digit'
   });
 
+  const LazyLoadedImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+    const imgRef = React.useRef<HTMLImageElement | null>(null);
+  
+    useEffect(() => {
+      if (imgRef.current) {
+        imgRef.current.src = src;
+      }
+    }, [src]);
+  
+    return <img ref={imgRef} alt={alt} />;
+  };
+
   const [languageData, setLanguageData] = useState<LanguageData[]>([]);
 
   useEffect(() => {
@@ -40,7 +52,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, onClose }) => {
   return (
     <div className="movie-details">
       <button className="close-button" onClick={onClose}>X</button>
-      <img src={fullImageUrl} alt={movie.title} loading="lazy" />
+      <LazyLoadedImage src={fullImageUrl} alt={movie.title} />
       <h2>{movie.title}</h2>
       <div className='description'>
         <span className='description-title'>Overview: </span>
